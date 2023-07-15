@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap");
+
+/* Most browsers Up/down arrow removing*/
+input::webkit-outer-spin-button,
+input::webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*Firefox up/down arrow removing*/
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+/*OperaGX up/down arrow removing*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14pt;
+    background: rgb(22, 22, 22);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin: 0;
+}
+.main_frame{
+    background: #243851;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #b9d5e7;
+    width: 510px;
+    margin: 0 auto;
+    margin-top: 10pt;
+}
+.title{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 24pt;
+    text-align: center;
+    margin-top: 26.56px;
+    margin-bottom: 26.56px;
+}
+.data_enter{
+    width:300px;
+    text-align: left;
+    position:relative;
+    left: 105px;
+    align-items: center;
+    display:grid;
+    grid-template-columns: repeat(2, 205px);
+    grid-template-rows: repeat(9,25px);
+    margin-bottom: 10pt;
+}
+  
+input{
+    width: 85px;
+    height:15px;
+}
+
+.result{
+  text-align: center;
+  font-weight: 800;
+  font-size: 18pt;
+  margin-top: 26.56px;
+  margin-bottom: 26.56px;
+}
+.yellow{
+  color:yellow;
+}
+.error {
+  color: yellow;
+  font-weight: 400pt;
+  font-size: 12pt;
+
+}
+.end{
+  font-family: "Montserrat", sans-serif;
+  font-size: 11pt;
+  max-width: 500px;
+  margin: 25pt auto;
+  text-align: justify;
+}
+.me{
+  color: #ebb82b;
+}
+a.link_calc:link,
+a.link_calc:visited{
+  color:#12d3b6;
+  font: bold;
+}
+a.link_calc:hover,
+a.link_calc:focus,
+a.link_calc:active{
+  color: #00f7ff;
+}
