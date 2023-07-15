@@ -36,7 +36,7 @@ body {
     border-radius: 10px;
     border-style: solid;
     border-color: #b9d5e7;
-    width: 510px;
+    width: 576px;
     margin: 0 auto;
     margin-top: 10pt;
 }
@@ -52,7 +52,7 @@ body {
     width:300px;
     text-align: left;
     position:relative;
-    left: 105px;
+    left: 141px;
     align-items: center;
     display:grid;
     grid-template-columns: repeat(2, 205px);
