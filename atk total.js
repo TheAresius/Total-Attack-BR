@@ -42,7 +42,7 @@ function atk_total() {
     result.innerHTML = `<div>${"Ataque Total: "} <span class="yellow">${final_result} ± ${est_error}</span>`;
     
   } else {
-    result.innerHTML =`<div> ${"Ataque Total: "}<span class = "yellow">${0}</span>`;
+    result.innerHTML =`<div> ${"Ataque Total: "}<span class = "yellow">${'-'}</span>`;
     result.innerHTML +=`<div> <span class = "error">Reveja os valores inseridos.</span>`
   }
 }
