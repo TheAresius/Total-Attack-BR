@@ -84,7 +84,7 @@ input{
 .end{
   font-family: "Montserrat", sans-serif;
   font-size: 11pt;
-  max-width: 500px;
+  max-width: 576px;
   margin: 25pt auto;
   text-align: justify;
 }
@@ -100,4 +100,13 @@ a.link_calc:hover,
 a.link_calc:focus,
 a.link_calc:active{
   color: #00f7ff;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10pt;
+  margin-left: 4px;
+  position: absolute;
+  bottom:4px;
 }
