@@ -7,6 +7,11 @@ input::webkit-inner-spin-button {
   margin: 0;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 /*Firefox up/down arrow removing*/
 input[type="number"] {
   -moz-appearance: textfield;
