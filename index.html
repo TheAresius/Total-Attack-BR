@@ -2,65 +2,251 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="atk total.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Ataque Total</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculadora de Ataque Total - Grand Chase</title>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="general-style.css" />
+  <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon" />
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+
+  <script src="alerts.js" defer></script>
+  <script src="modal.js" defer></script>
+  <script src="TA.js"></script>
+  <script src="ui.js" defer></script>
+  <script src="history.js" defer></script>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+  <meta name="view-transition" content="same-origin" />
 </head>
-
 <body>
-    <div class="main_frame">
-        <div class="title">
-            Grand Chase
-            <br>
-            Calculadora de Ataque Total
-        </div>
-        <div class="data_enter">
-            Ataque:
-            <input type="string" id="Ataque" min="0" onfocusout="atk_total()" />
-            Defesa:
-            <input type="string" id="Defesa" min="0" onfocusout="atk_total()" />
-            HP:
-            <input type="string" id="HP" min="0" onfocusout="atk_total()" />
-            Ataque Especial:
-            <input type="string" id="Ataque_Especial" min="0" onfocusout="atk_total()" />
-            Defesa Especial:
-            <input type="string" id="Defesa_Especial" min="0" onfocusout="atk_total()" />
-            Crítico (%):
-            <input type="string" id="Critico" min="0" onfocusout="atk_total()" />
-            Dano Crítico (%):
-            <input type="string" id="Dano_Critico" min="0" onfocusout="atk_total()" />
-            Recuperar HP (%):
-            <input type="string" id="Recuperar_HP" min="0" onfocusout="atk_total()" />
-            Recuperar MP (%):
-            <input type="string" id="Recuperar_MP" min="0" onfocusout="atk_total()" />
+    <a href="https://thearesius.github.io/Total-Attack-EN/" class="floating-lang-btn" title="Switch to English">
+    <img src="images/usa.png" alt="English Flag">
+  </a>
+
+  <button id="menuTrigger" class="floating-menu-btn" title="Menu Principal">
+        <ion-icon name="menu-outline"></ion-icon>
+    </button>
+
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-header">
+            <h3 class="menu-title">Grand Chase Tools<br><span>Aresius</span></h3>
+            <button id="menuClose" class="menu-close-btn">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
         </div>
 
-        <div id="result" class="result">
-            Ataque Total: <span class="yellow">0 ± 0</span>
+        <div class="menu-content">
+            <div class="menu-group">
+                <span class="group-title">Navegação</span>
+
+                <a href="https://thearesius.github.io/Damage-Calculator-BR/" class="menu-link">
+                    <ion-icon name="calculator-outline"></ion-icon>
+                    Calculadora de Dano
+                </a>
+
+                <a href="#" class="menu-link">
+                    <ion-icon name="calculator-outline"></ion-icon>
+                    Calculadora de Ataque Total
+                </a>
+                
+                <a href="https://thearesius.github.io/Damage-Calculator-BR/damage-info/" class="menu-link">
+                    <ion-icon name="book-outline"></ion-icon>
+                    Como funciona o Dano?
+                </a>
+
+                <a href="https://thearesius.github.io/Damage-Calculator-BR/roadmap/" class="menu-link">
+                    <ion-icon name="map-outline"></ion-icon>
+                    Roadmap
+                </a>
+            </div>
+
+            <div class="menu-group">
+                <span class="group-title">Apoio / Donate</span>
+                
+                <a href="#" class="menu-link" onclick="openLivePix(); return false;">
+                    <ion-icon name="qr-code-outline"></ion-icon>
+                    LivePix (QR Code)
+                </a>
+
+                <a href="https://ko-fi.com/TheAresius" target="_blank" class="menu-link">
+                    <img src="https://storage.ko-fi.com/cdn/cup-border.png" class="support-icon kofi-wiggle" alt="Ko-fi">
+                    Ko-fi
+                </a>
+            </div>
+
+            <div class="menu-group">
+                <span class="group-title">Social</span>
+                
+                <a href="https://linktr.ee/thearesius" target="_blank" class="menu-link">
+                    <img src="images/icons/extras/linktree.ico" width="19.2" height="19.2" oncontextmenu="return false" style="margin-right: 12px;">
+                    LinkTree
+                </a>
+                
+                <a href="https://github.com/TheAresius/Total-Attack-BR" target="_blank" class="menu-link">
+                    <img src="images/icons/extras/github.png" width="19.2" height="19.2" oncontextmenu="return false" style="margin-right: 12px;">
+                    Projeto no GitHub
+                </a>
+                <a href="http://discordapp.com/users/289929075886129152" target="_blank" class="menu-link">
+                    <img src="images/icons/extras/discord.png" width="19.2" height="19.2" oncontextmenu="return false" style="margin-right: 12px;">
+                    Discord: aresius4407
+                </a>
+                <a href="https://www.youtube.com/@Aresius" target="_blank" class="menu-link">
+                    <img src="images/icons/extras/youtube.png" width="19.2" height="19.2" oncontextmenu="return false" style="margin-right: 12px;">
+                    Canal no YouTube
+                </a>
+            </div>
+
+            <div class="menu-group">
+                <span class="group-title">Extras</span>
+                <a href="https://docs.google.com/spreadsheets/d/1FGxKHQuwz_Jx-GdYd6647FiAE9UbS6mZgufXor9_DZk/edit#gid=722314000" target="_blank" class="menu-link">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Google_Sheets_logo_%282014-2020%29.svg" width="19.2" height="19.2" oncontextmenu="return false" style="margin-right: 12px;">   
+                    Tabela de dano base
+                </a>
+
+                <a href="https://eitur.github.io/gcc-card/br/" target="_blank" class="menu-link">
+                    <img src="images/icons/extras/card.ico" width="19.2" height="19.2" oncontextmenu="return false" style="margin-right: 12px;">   
+                    Gerenciador de Cartas (by daughterly)
+                </a>
+            </div>
+
+            
+        </div>
+
+        <div class="menu-footer">
+            <p>Desenvolvido por <strong>Aresius</strong></p>
+            
+            <div class="credits-container">
+                <span class="credits-label">Agradecimentos Especiais</span>
+                <p class="credits-names">
+                    DsinC &bull; i &bull; Esawa
+                </p>
+            </div>
+
+            <p class="copyright">
+                © 2026 Grand Chase Tools
+            </p>
+            
         </div>
     </div>
-    <div class="end">
-        <p id="comment0">
-            O valor após o ± indica o quanto o ataque total pode variar para mais ou para menos devido a incertezas. Essa incerteza é da ordem de até ~0.009%
-        </p>
-        <p id="comment1">
-            Calculadora feita por Aresius. Para feedback, reporte de bugs,
-            sugestões, discussão de dados etc você pode me encontrar no Discord:
-            <span class="me">aresius4407</span>.
-        </p>
-        <p id="comment2">
-            Confira também minhas outras calculadoras <a class="link_calc"
-                href="https://linktr.ee/thearesius" target="_blank"
-                rel="noopener noreferrer">aqui</a>.
-        </p>
+
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <div class="navigation-header">
     </div>
+
+    <main class="container">
+        <header class="header">
+            <h1>Grand Chase</h1>
+            <h2>Calculadora de Ataque Total</h2>
+        </header>
+
+
+        <section class="result-banner">
+            <div id="result">
+                Ataque Total: <span class="highlight">0</span>
+            </div>
+            
+            
+        </section>
+        <div class="save-btn-container">
+            <button class="save-btn" onclick="saveCurrentTA()">Salvar Resultado Atual</button>
+        </div>
+        
+
+        <section class="grid-layout">
+            
+            <div class="card">
+                <h3 class="card-title" style="color: #FFB347;">Status Base</h3>
+                
+                <div class="input-row">
+                    <label for="Tipo_Personagem"><b>Tipo de Personagem:</b></label>
+                    <select id="character_type" oninput="TA()">
+                        <option value="MP">MP</option>
+                        <option value="AP">AP</option>
+                    </select>
+                </div>
+                <div class="input-row"><label for="Ataque">Ataque:</label> <input type="number" id="attack" min="0" oninput="TA()" /></div>
+                <div class="input-row"><label for="Defesa">Defesa:</label> <input type="number" id="defense" min="0" oninput="TA()" /></div>
+                <div class="input-row"><label for="HP">HP:</label> <input type="number" id="hp" min="0" oninput="TA()" /></div>
+                <div class="input-row"><label for="Ataque_Especial">Ataque Especial:</label> <input type="number" id="special_attack" min="0" oninput="TA()" /></div>
+                <div class="input-row"><label for="Defesa_Especial">Defesa Especial:</label> <input type="number" id="special_defense" min="0" oninput="TA()" /></div>
+                <div class="input-row"><label for="Critico">Chance de Crítico (%):</label> <input type="number" id="crit_chance" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Critico">Dano Crítico (%):</label> <input type="number" id="crit_damage" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Ataque_Costas">Dano Ataque Costas (%):</label> <input type="number" id="back_attack_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Recuperar_HP">Recuperação de HP (%):</label> <input type="number" id="hp_recovery" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Recuperar_MP">Recuperação de MP / AP (%):</label> <input type="number" id="mp_recovery" min="0" step="0.01" oninput="TA()" /></div>
+                
+                
+            </div>
+
+            <div class="card">
+                <h3 class="card-title" style="color: #CE6363;">Buffs</h3>
+                <div class="input-row"><label for="Dano_Todas_Habilidades">Dano Todas as Habilidades (%):</label> <input type="number" id="all_skill_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Contra_Chefes">Dano Causado a Chefes (%):</label> <input type="number" id="boss_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Atacar_Ser_Atacado">Atacar / Ser Atacado (%):</label> <input type="number" id="polarize" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Habilidade_Normal">Dano Hab. Normal (%):</label> <input type="number" id="normal_skill_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Habilidade_Despertar">Dano Hab. Despertar (%):</label> <input type="number" id="awk_skill_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_MP1">Dano MP1 (%):</label> <input type="number" id="mp1_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_MP2">Dano MP2 (%):</label> <input type="number" id="mp2_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_MP3">Dano MP3 (%):</label> <input type="number" id="mp3_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_MP4">Dano MP4 (%):</label> <input type="number" id="mp4_dmg" min="0" step="0.01" oninput="TA()" /></div>
+            </div>
+
+            
+
+            <div class="card">
+                <h3 class="card-title" style="color: #2EFFA8;">Suporte</h3>
+                
+                
+                <div class="input-row"><label for="Red_Custo_MP">Red. Custo de MP (%):</label> <input type="number" id="mp_cost" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Custo_MP1">Red. Custo MP1 (%):</label> <input type="number" id="mp1_cost" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Custo_MP2">Red. Custo MP2 (%):</label> <input type="number" id="mp2_cost" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Custo_MP3">Red. Custo MP3 (%):</label> <input type="number" id="mp3_cost" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Custo_MP4">Red. Custo MP4 (%):</label> <input type="number" id="mp4_cost" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Cooldown">Red. Cooldown Geral (%):</label> <input type="number" id="general_cd" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Cooldown_MP1">Red. Cooldown MP1 (%):</label> <input type="number" id="mp1_cd" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Cooldown_MP2">Red. Cooldown MP2 (%):</label> <input type="number" id="mp2_cd" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Cooldown_MP3">Red. Cooldown MP3 (%):</label> <input type="number" id="mp3_cd" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Cooldown_MP4">Red. Cooldown MP4 (%):</label> <input type="number" id="mp4_cd" min="0" step="0.01" oninput="TA()" /></div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title" style="color: #5DADE2;">Etc</h3>
+                <div class="input-row"><label for="Chance_Lanca_Infernal">Chance Lança Infernal (%):</label> <input type="number" id="hell_spear_chance" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Dano_Lanca_Infernal">Dano Lança Infernal:</label> <input type="number" id="hell_spear_dmg" min="0" step="0.01" oninput="TA()" /></div>
+                <div class="input-row"><label for="Red_Dano_Critico">Red. Dano Crítico (%):</label> <input type="number" id="crit_dmg_red" min="0" step="0.01" oninput="TA()" /></div>
+
+            </div>
+        </section>
+        <div id="resultList"></div>
+
+        
+    </main>
+
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeCompareModal()">&#10006;</span>
+        <div id="modalText"></div>
+    </div>
+</div>
+
+<div id="overlay" class="overlay" onclick="closeCompareModal()"></div>
+
+<button id="btnTop" class="btn-scroll-top">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+</button>
 
 </body>
-<footer>
-    <div id="update">v.1.0.4 - Última atualização: 12 de Agosto de 2023.</div>
-</footer>
 </html>
