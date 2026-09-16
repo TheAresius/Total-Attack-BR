@@ -239,7 +239,6 @@ function renderHistory() {
                 <div class="history-anim-inner">
                     <div class="response-list-item-content">
                         
-                        <!-- Coluna 1: Status Base -->
                         <div class="stat-group">
                             <div class="response-list-item-title" style="color:#FFB347; font-weight:bold; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:5px;">Status Base</div>
                             <div class="response-list-item-value">Tipo de Personagem: <span class='history-stat-value'>${item.inputs.character_type}</span></div>
@@ -255,7 +254,6 @@ function renderHistory() {
                             ${getStatLine('mp_recovery')}
                         </div>
 
-                        <!-- Coluna 2: Buffs -->
                         <div class="stat-group">
                             <div class="response-list-item-title" style="color:#CE6363; font-weight:bold; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:5px;">Buffs</div>
                             ${getStatLine('all_skill_dmg')}
@@ -269,7 +267,6 @@ function renderHistory() {
                             ${getStatLine('mp4_dmg')}
                         </div>
 
-                        <!-- Coluna 3: Suporte -->
                         <div class="stat-group">
                             <div class="response-list-item-title" style="color:#2EFFA8; font-weight:bold; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:5px;">Suporte</div>
                             ${getStatLine('mp_cost')}
@@ -284,7 +281,6 @@ function renderHistory() {
                             ${getStatLine('mp4_cd')}
                         </div>
 
-                        <!-- Coluna 4: Etc -->
                         <div class="stat-group">
                             <div class="response-list-item-title" style="color:#5DADE2; font-weight:bold; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:5px;">Etc</div>
                             ${getStatLine('hell_spear_chance')}
@@ -331,16 +327,18 @@ function compareSelected() {
     const generateCells = (valA, valB) => {
         const format = (v) => v.toLocaleString('pt-BR');
         if (valA > valB) {
-            const diff = valB !== 0 ? ((valA / valB) - 1) * 100 : 100;
+            const diffPct = valB !== 0 ? ((valA / valB) - 1) * 100 : 100;
+            const diffAbs = valA - valB;
             return {
-                htmlA: `<span class="winner-val">${format(valA)}</span> <span class="diff-badge">▲ ${diff.toFixed(2)}%</span>`,
+                htmlA: `<span class="winner-val">${format(valA)}</span> <span class="diff-badge">▲ ${format(diffAbs)} (${diffPct.toFixed(2)}%)</span>`,
                 htmlB: `<span class="compare-val">${format(valB)}</span>`
             };
         } else if (valB > valA) {
-            const diff = valA !== 0 ? ((valB / valA) - 1) * 100 : 100;
+            const diffPct = valA !== 0 ? ((valB / valA) - 1) * 100 : 100;
+            const diffAbs = valB - valA;
             return {
                 htmlA: `<span class="compare-val">${format(valA)}</span>`,
-                htmlB: `<span class="winner-val">${format(valB)}</span> <span class="diff-badge">▲ ${diff.toFixed(2)}%</span>`
+                htmlB: `<span class="winner-val">${format(valB)}</span> <span class="diff-badge">▲ ${format(diffAbs)} (${diffPct.toFixed(2)}%)</span>`
             };
         } else {
             return {
@@ -361,7 +359,6 @@ function compareSelected() {
         if (baseA > baseB) { iconA = symUp; iconB = symDown; } 
         else if (baseB > baseA) { iconA = symDown; iconB = symUp; }
 
-        
         const displayA = formatStatValue(id, baseA);
         const displayB = formatStatValue(id, baseB);
 
@@ -413,7 +410,7 @@ function compareSelected() {
                 </tbody>
             </table>
             <div style="margin: 15px; text-align: center; font-size: 0.9em; color: #aaa;">
-                <span class="diff-badge" style="font-size: 12px;">▲ X%</span> Indica a porcentagem de diferença que a build com maior TA tem em relação à menor.
+                <span class="diff-badge" style="font-size: 12px;">▲ X (Y%)</span> Indica a diferença absoluta e percentual que a build com maior TA tem em relação à menor.
             </div>
         </div>
     `;

@@ -12,7 +12,7 @@ When observing some stats in the game, some of them seemed to be independent on 
 
 The most basic model for a high-order mathematical function is a linear combination of terms, i.e.:
 <p align=center>
-  $f(\mathbf{x}) = x_1w_1 + x_2w_2 + x_3w_3+ \cdots +x_n$
+  $f(\mathbf{x}) = x_1w_1 + x_2w_2 + x_3w_3+ \cdots +x_nw_n$
 </p>
 
 where $w_1$, $w_2$, $w_3$, $\cdots$, $w_n$ are the weights associated to each variable $\mathbf{x}$.
